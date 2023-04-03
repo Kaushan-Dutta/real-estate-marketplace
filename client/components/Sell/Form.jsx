@@ -21,7 +21,7 @@ const Form = () => {
           <p>Listing price is currently 0.02 ETH</p>
        </div>
        <br/>
-       <List/>
+       <List/><List/>
        <br/>
        <div className='mx-auto w-96 rounded-md bg-gray-100 px-10 py-5 font-semibold flex flex-row justify-between items-center text-xl'>
 
