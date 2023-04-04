@@ -3,11 +3,15 @@ import Image from 'next/image';
 import C1 from '../../Images/C1.jpg';
 import { BsCircleFill } from 'react-icons/bs';
 
-
+const style={
+  container:`rounded-md shadow-md px-10 py-10 `,
+  wrapper:``,
+  button:` bg-cyan-500 text-white text-xl font-serif rounded-md shadow-md px-10 py-3 mt-5`
+}
 const Verify = ( {setState}) => {
   return (
-    <div className='rounded-md shadow-md px-10 py-10 '>
-        <div className='flex flex-row-reverse cursor-pointer'>
+    <div className={style.container}>
+        <div className='flex flex-row-reverse cursor-pointer items-center'>
           <BsCircleFill onClick={()=>{setState(false)}}/>
         </div>
         <div className='flex flex-row justify-between items-center '>
@@ -24,7 +28,7 @@ const Verify = ( {setState}) => {
           </div>
         </div>
         <div className='text-center '>
-          <button className=' bg-cyan-500 text-white text-xl font-serif rounded-md shadow-md px-10 py-3 mt-5'>Verify Document</button>
+          <button className={style.button}>Verify Document</button>
         </div>
     </div>
   )

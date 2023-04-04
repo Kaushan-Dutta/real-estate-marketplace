@@ -22,18 +22,20 @@ const Schema=new mongoose.Schema({
     id:Number,
     propertyName:String,
     propertyDescription:String,
-    price:Number
+    price:Number,
+    isHouse:Boolean,
+    image:String
 
 });
 
 const Model=new mongoose.model('Property',Schema);
 
-router.post('/sellAsset',async(req,res)=>{
+router.post('/sellHouse',async(req,res)=>{
 
     console.log(req.body);
-    const {id,name,description,price}=req.body;
+    /* const {id,name,description,price}=req.body;
     const instance=new Model({id:id,propertyName:name,propertyDescription:description,price:price});
-    console.log(await instance.save());
+    console.log(await instance.save()); */
     return res.status(200).json({message:true})
  
  })
