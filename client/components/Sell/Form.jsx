@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 import House from './sellHouse';
 import Apartment from './sellAppartment';
 import List from './List';
+import { Data } from '@/pages/_app';
+import { ethers } from 'ethers';
 
 const Form = () => {
 
   const [value,setValue]=useState(1);
+  const [price,setPrice]=useState(0);
+  const {status,contract,provider,account,connectWallet}=useContext(Data);
+
   const changeState=()=>{
     if(value==1){
       setValue(2);
@@ -14,11 +19,18 @@ const Form = () => {
       setValue(1)
     }
   }
- 
+  useEffect(()=>{
+    const loadContents=async()=>{
+      const res=await contract.listingPrice();
+      const listingPrice=await ethers.utils.formatUnits(res);
+      setPrice(listingPrice);
+    }
+    loadContents();
+  },[])
   return (
     <div className='pt-32'>
        <div className='text-center bg-gray-50 py-5 font-serif text-xl'>
-          <p>Listing price is currently 0.02 ETH</p>
+          <p>Listing price is currently &nbsp; {price} &nbsp;  ETH</p>
        </div>
        <br/>
        <List/><List/>

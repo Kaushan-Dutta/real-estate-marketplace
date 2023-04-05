@@ -21,7 +21,7 @@ const Schema=new mongoose.Schema({
 
     id:Number,
     propertyName:String,
-    propertyDescription:String,
+    propertyAddress:String,
     price:Number,
     isHouse:Boolean,
     image:String
@@ -30,14 +30,51 @@ const Schema=new mongoose.Schema({
 
 const Model=new mongoose.model('Property',Schema);
 
-router.post('/sellHouse',async(req,res)=>{
+router.post('/sellProperty',async(req,res)=>{
 
     console.log(req.body);
-    /* const {id,name,description,price}=req.body;
-    const instance=new Model({id:id,propertyName:name,propertyDescription:description,price:price});
-    console.log(await instance.save()); */
+
+    const {propertyDetail,numItems}=req.body;
+    //console.log(propertyDetails,id)
+    const instance=new Model({
+        id:numItems,
+        propertyName:propertyDetail.name,
+        propertyAddress:propertyDetail.address,
+        price:propertyDetail.sellPrice,
+        isHouse:propertyDetail.isHouse,
+        image:propertyDetail.image
+    });
+    console.log(await instance.save()); 
     return res.status(200).json({message:true})
  
  })
+
+router.get('/getHouse',async(req,res)=>{
+    
+    
+    const getProperty=await Model.find({isHouse:true});
+    console.log(getProperty);
+    return res.status(200).json({message:true,data:getProperty});
+
+})
+
+router.get('/getFlat',async(req,res)=>{
+    
+    console.log("Entry");
+    const getProperty=await Model.find({isHouse:false});
+    console.log(getProperty);
+    return res.status(200).json({message:true,body:getProperty});
+    
+})
+router.get('/getProperty',async(req,res)=>{
+    
+    console.log("Entry");
+    const {id}=await req.params;
+    console.log(req.query,id);
+    const getProperty=await Model.findOne({id:12,isHouse:false});
+    console.log(getProperty);
+    return res.status(200).json({message:true,body:getProperty});
+    
+})
 module.exports=router;
 

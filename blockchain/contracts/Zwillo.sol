@@ -27,7 +27,7 @@ contract Zwillo is ERC721URIStorage{
     constructor(uint256 _price)ERC721("Zwillo","ZW"){
             listingPrice=_price;
     }
-    function listAsset(string memory _imageURL, uint256 _amt)public payable{
+    function listAsset(string memory _imageURL, uint256 _amt)public payable returns(uint256){
 
         require(msg.value>=listingPrice,"Send the listing price");
         listedItems++;
@@ -36,7 +36,7 @@ contract Zwillo is ERC721URIStorage{
         myProperty.amt=_amt;
         myProperty.owner=payable(msg.sender);
         myProperty.seller=payable(address(this));
-        _transfer(msg.sender,address(this) , listedItems);
+        return(listedItems);
 
 
     }

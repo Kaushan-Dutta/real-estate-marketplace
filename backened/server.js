@@ -14,6 +14,7 @@ const corsOptions={
 app.use(cors(corsOptions));
 app.use(require('./components/sellProperty'));
 
+
 app.get("/",async(req,res)=>{
     res.send("<h1>Hello Server</h1>")
 })

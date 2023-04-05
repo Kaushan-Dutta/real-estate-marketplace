@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import Navbar from "@/components/Navbar";
 import Web3Modal from "web3modal";
 import { ethers } from "ethers";
+import Contract from "../../blockchain/artifacts/contracts/Zwillo.sol/Zwillo.json"
 
 import React,{useState,useEffect,createContext} from 'react';
 
@@ -53,10 +54,13 @@ export default function App({ Component, pageProps }) {
             const provider=new ethers.providers.Web3Provider(connection);
             // console.log(provider);
             const signer= provider.getSigner();
+            const contract=new ethers.Contract("0x36C4Af6302174e455B4509cdB7627f18D0c92847",Contract.abi,signer);
+
             console.log(accounts);
             setProvider(provider);
             setAccount(accounts[0]);
             setStatus("connected");
+            setContract(contract);
         }
         else{
           setStatus("notconnected");

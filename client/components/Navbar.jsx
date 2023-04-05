@@ -42,7 +42,8 @@ const Navbar = () => {
                 <h1>Zwillo</h1>
             </div>
             <div className={style.text+ 'text-xl'} style={{fontFamily: 'Montserrat, sans-serif'}}>
-                 <button className={style.button} onClick={connectWallet}>Connect Wallet</button>
+                 <button className={style.button} onClick={connectWallet}>{
+                     account?account.slice(0,5)+"..."+account.slice(-5,):"Connect Wallet"}</button>
                  <img src={"https://avatars.dicebear.com/api/identicon/"+"1"+".svg" } className={style.image}/>
             </div>
         </div>

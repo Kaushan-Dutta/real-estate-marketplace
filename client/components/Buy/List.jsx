@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import GetFlats from './getFlats';
 import GetHouse from './getHouse';
+
 const List = () => {
 
     const [value,setValue]=useState(1);
