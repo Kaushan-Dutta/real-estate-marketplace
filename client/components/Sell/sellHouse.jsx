@@ -1,4 +1,4 @@
-import React,{useCallback,useState,useContext} from 'react';
+import React,{useCallback,useState,useContext,useEffect} from 'react';
 import C1 from '../../Images/C1.jpg';
 import Image from 'next/image';
 import {useDropzone} from 'react-dropzone';
@@ -7,6 +7,7 @@ import axios from 'axios';
 import { Data } from '@/pages/_app';
 import { ethers } from 'ethers';
 import { Web3Storage, getFilesFromPath } from 'web3.storage'
+import { loadComponents } from 'next/dist/server/load-components';
 
 const storage = new Web3Storage({ token:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDlFOTBjNkM4OWVkYjBCRDc4ZGUxMGNmMjg0YzAzY0NhMWZjNDYxM0UiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzkxMjg2MjEwNzQsIm5hbWUiOiJ3ZWIzVG9rZW4ifQ.pr1X2gh7R1lJb5eJWqX6yuvLP8e7w5V8qqbept7Uj98' });
 
@@ -24,6 +25,13 @@ const encodedBase64 ='';
 const sellHouse = () => {
 
   const {status,contract,provider,account,chain,connectWallet}=useContext(Data);
+  useEffect(()=>{
+    const loadContents=async()=>{
+        const items=await contract.listedItems();
+        console.log("..............",ethers.utils.formatUnits(items))
+    }
+    loadContents();
+  },[])
   const [propertyDetail,setpropertyDetail]=useState({name:'',address:'',propertyNum:'',pinCode:'',sellPrice:'',image:'',isHouse:true})
 
   const [image,setImage]=useState(C1);

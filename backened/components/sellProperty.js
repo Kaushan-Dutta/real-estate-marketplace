@@ -54,7 +54,7 @@ router.get('/getHouse',async(req,res)=>{
     
     const getProperty=await Model.find({isHouse:true});
     console.log(getProperty);
-    return res.status(200).json({message:true,data:getProperty});
+    return res.status(200).json({message:true,body:getProperty});
 
 })
 
@@ -75,6 +75,13 @@ router.get('/getProperty',async(req,res)=>{
     console.log(getProperty);
     return res.status(200).json({message:true,body:getProperty});
     
+})
+router.get("/getProperties",async(req,res)=>{
+
+    const getProperties=await Model.find().sort( [['_id', -1]]).limit(5);
+    console.log(getProperties);
+    return res.status(200).json({message:true,body:getProperties});
+
 })
 module.exports=router;
 

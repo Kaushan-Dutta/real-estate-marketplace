@@ -10,7 +10,7 @@ export const Data=createContext();
 
 export default function App({ Component, pageProps }) {
 
-  const [status,setStatus]=useState('not');
+  const [status,setStatus]=useState('notconnected');
   const [contract,setContract]=useState(null);
   const [provider,setProvider]=useState(null);
   const [account,setAccount]=useState(0);
@@ -54,7 +54,7 @@ export default function App({ Component, pageProps }) {
             const provider=new ethers.providers.Web3Provider(connection);
             // console.log(provider);
             const signer= provider.getSigner();
-            const contract=new ethers.Contract("0x36C4Af6302174e455B4509cdB7627f18D0c92847",Contract.abi,signer);
+            const contract=new ethers.Contract("0x42fc1ECd4739f26c3bC89a671Ca39e6AF7f6cB61",Contract.abi,signer);
 
             console.log(accounts);
             setProvider(provider);

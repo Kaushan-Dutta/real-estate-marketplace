@@ -80,6 +80,9 @@ const PropertyDetail = () => {
                     <li className='mr-5 text-lg'>Phone No: 97297940232</li>
                     <li className='mr-5 text-lg'>Email: kswubsiw@gmail.com</li>
                 </div>
+                <div className='mt-5'>
+                  <button className={`hover:bg-cyan-600 w-1/3 ${style.present} bg-teal-800` }>Buy Now</button>
+                </div>
 
             </div>
          </div>

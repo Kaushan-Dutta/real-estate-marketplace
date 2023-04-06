@@ -11,25 +11,26 @@ const About = () => {
     {
       image:C1,
       name:'Buy a home',
+    
       description:'Find your place with an immersive photo experience and the most listings, including things you won’t find anywhere else.'
     },
     {
-      image:C1,
-      name:'Buy a home',
+      image:C2,
+      name:'Sell a home',
       description:'Find your place with an immersive photo experience and the most listings, including things you won’t find anywhere else.'
     },
     {
-      image:C1,
-      name:'Buy a home',
+      image:C3,
+      name:'Rent home',
       description:'Find your place with an immersive photo experience and the most listings, including things you won’t find anywhere else.'
     },
     {
-      image:C1,
-      name:'Buy a home',
+      image:C4,
+      name:'Auction Property',
       description:'Find your place with an immersive photo experience and the most listings, including things you won’t find anywhere else.'
     },{
-      image:C1,
-      name:'Buy a home',
+      image:C5,
+      name:'Predict with values',
       description:'Find your place with an immersive photo experience and the most listings, including things you won’t find anywhere else.'
     }]
 
