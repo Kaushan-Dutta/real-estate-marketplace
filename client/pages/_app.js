@@ -54,7 +54,7 @@ export default function App({ Component, pageProps }) {
             const provider=new ethers.providers.Web3Provider(connection);
             // console.log(provider);
             const signer= provider.getSigner();
-            const contract=new ethers.Contract("0x42fc1ECd4739f26c3bC89a671Ca39e6AF7f6cB61",Contract.abi,signer);
+            const contract=new ethers.Contract("0x0337CEcfFd3860f9397ec4e3518421D3bf2a39fe",Contract.abi,signer);
 
             console.log(accounts);
             setProvider(provider);
