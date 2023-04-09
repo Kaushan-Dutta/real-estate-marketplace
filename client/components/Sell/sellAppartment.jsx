@@ -68,12 +68,15 @@ const sellAppartment = () => {
     console.log(imageURI,account);
 
     const sellFlat=await contract.listAsset(imageURI,toWei(propertyDetail.sellPrice),{value:toWei(sellPrice),gasLimit: 5000000});
+    console.log(sellFlat);
     const items=await contract.listedItems();
     const numItems=ethers.utils.formatUnits(items)*Math.pow(10,18);
+    
 
     try{
     const res=await axios.post("http://localhost:3030/sellProperty",{propertyDetail,numItems}, { withCredentials: true });
     console.log(res);
+    
 }
     catch(err){
         console.log(err);

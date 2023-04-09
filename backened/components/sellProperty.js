@@ -69,9 +69,9 @@ router.get('/getFlat',async(req,res)=>{
 router.get('/getProperty',async(req,res)=>{
     
     console.log("Entry");
-    const {id}=await req.params;
-    console.log(req.query,id);
-    const getProperty=await Model.findOne({id:12,isHouse:false});
+    const {id}=await req.query;
+    //console.log(id);
+    const getProperty=await Model.findOne({id:id});
     console.log(getProperty);
     return res.status(200).json({message:true,body:getProperty});
     

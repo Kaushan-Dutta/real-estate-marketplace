@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import C1 from "../../Images/C1.jpg";
 import Image from 'next/image';
 import Link from 'next/link';
+import axios from 'axios';
 import {CiLocationArrow1 } from 'react-icons/ci';
 import { BsCircleFill } from 'react-icons/bs';
+import { useRouter } from 'next/router';
 
 const message=[
   {owner:true,message:"This is the approved house"},
@@ -34,8 +36,8 @@ const message=[
 
 const style={
   conatiner:`p-40 flex flex-row justify-start`,
-  imageSection:`rounded-lg border shadow-lg w-full px-10 py-10 flex flex-row overflow-x-scroll overflow-y-hidden scrollBar`,
-  image:`border mx-5`,
+  imageSection:`rounded-lg border shadow-lg w-full px-10 py-10 flex flex-row overflow-x-scroll overflow-y-hidden scrollBar justify-center`,
+  image:` mx-5 w-96 h-96 object-contain `,
   priceSection:`flex flex-row  items-center justify-between`,
   price:`flex flex-row  text-7xl bold `,
   sale:`text-2xl font-mono flex flex-row items-center`,
@@ -48,23 +50,34 @@ const style={
   button:`rounded-full p-3 bg-cyan-500 text-2xl  text-white`
 }
 const PropertyDetail = () => {
+  const router=useRouter();
+  const [property,setProperty]=useState({id:0,name:'',address:'',price:0,image:null})
+
+  useEffect(()=>{
+      const loadContents=async()=>{
+        console.log("++++++++++++++++",router.query.id);
+        const res=await axios.get("http://localhost:3030/getProperty",{params:{id:router.query.id}});
+        const property=res.data.body;
+        console.log(res.data.body);
+        setProperty({id:property.id,name:property.propertyName,address:property.propertyAddress,price:property.price,image:property.image});
+
+      }
+      loadContents();
+  },[])
   return (
     <div className={style.conatiner}>
          <div className='w-2/3 mx-5'>
             <div className={style.imageSection}  >
-                <Image src={C1} className={style.image}/>
-                <Image src={C1} className={style.image}/>
-                <Image src={C1} className={style.image}/>
-                <Image src={C1} className={style.image}/> 
+                <img src={property.image} className={style.image}/>
             </div>
             <div className='mt-10 px-10'>
                 <div className={style.priceSection}>
 
-                     <div className={style.price} style={{fontFamily: 'Montserrat, sans-serif'}}>10.54 ETH</div>
+                     <div className={style.price} style={{fontFamily: 'Montserrat, sans-serif'}}>{property.price} ETH</div>
                      <p className={style.sale}><BsCircleFill className='text-lg text-red-600 mx-5'/><span >For Sale</span></p>
                 </div>
                 
-                <p style={{fontFamily: 'Montserrat, sans-serif'}} className='text-3xl bold my-5'> Dutta House, 4056 E River Rd,Hamilton, OH 45015</p>
+                <p style={{fontFamily: 'Montserrat, sans-serif'}} className='text-3xl bold my-5'> {property.name},{property.address}</p>
                 <div className={style.presentSection}>
                     <li className={style.present}>756 sqft</li>
                     <li className={style.present}>Central AC</li>

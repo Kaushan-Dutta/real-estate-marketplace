@@ -32,6 +32,7 @@ contract Zwillo is ERC721URIStorage{
         require(msg.value>=listingPrice,"Send the listing price");
         listedItems++;
         Property storage myProperty=property[listedItems];
+        myProperty.id=listedItems;
         myProperty.imageURL=_imageURL;
         myProperty.amt=_amt;
         myProperty.owner=payable(msg.sender);
@@ -55,7 +56,6 @@ contract Zwillo is ERC721URIStorage{
         require(!myProperty.isSold,"Your property has already been sold");
         myProperty.owner=payable(msg.sender);
         myProperty.isSold=true;
-        _transfer(address(this) ,msg.sender, _id);
 
 
     }
@@ -65,14 +65,16 @@ contract Zwillo is ERC721URIStorage{
         return(property[_id]);
 
     }
-    function getMyAssets()public view returns(Property[] memory){
+    function getMyAsset()public view returns(Property[] memory){
 
-        Property[]  memory items ;
+        Property[]  memory items =new Property[](listedItems); 
+        uint count;
         for(uint i=1;i<=listedItems;i++){
             Property memory item=property[i];
             
             if(item.owner==msg.sender){
-                items[i-1]=item;
+                items[count]=item;
+                count++;
             }
         }
         return(items);
