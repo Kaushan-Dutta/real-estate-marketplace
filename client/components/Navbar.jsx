@@ -32,6 +32,7 @@ const Navbar = () => {
               <li className={path=='/'?'text-cyan-500':''}><Link href="/">Home</Link></li>
               <li className={path.startsWith("/buy")?'text-cyan-500':''}><Link href="/buy">Buy </Link></li>
               <li><Link href="/sell" className={path=='/sell'?'text-cyan-500':''}> Sell</Link></li>
+              <li><Link href="/verify" className={path=='/verify'?'text-cyan-500':''}> Verify</Link></li>
 
               {/* <li><Link href="">Auction</Link></li>
               <li><Link href="">Rent</Link></li>

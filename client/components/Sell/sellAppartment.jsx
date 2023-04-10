@@ -70,6 +70,7 @@ const sellAppartment = () => {
     const sellFlat=await contract.listAsset(imageURI,toWei(propertyDetail.sellPrice),{value:toWei(sellPrice),gasLimit: 5000000});
     console.log(sellFlat);
     const items=await contract.listedItems();
+    
     const numItems=ethers.utils.formatUnits(items)*Math.pow(10,18);
     
 

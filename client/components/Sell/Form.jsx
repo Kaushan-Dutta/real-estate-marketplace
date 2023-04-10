@@ -57,9 +57,9 @@ const Form = () => {
          {list.map((object,id)=>{
             const _id=ethers.utils.formatUnits(object.id)*Math.pow(10,18);
             const amt=ethers.utils.formatUnits(object.amt);
-
+            
             return(
-                 <List key={id} id={_id} amt={amt} />
+                 <>{!object.isVerfied && <List key={id} id={_id} />}</>
          )}            
          )}
        </div> 
